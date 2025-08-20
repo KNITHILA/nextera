@@ -1,0 +1,621 @@
+/* ============ THEME ============ */
+:root{
+  --bg:#0f0f0f;
+  --bg-2:#151515;
+  --paper:#0b0b0b;
+  --ink:#ffffff;
+  --muted:#a6a6a6;
+  --line:#242424;
+  --glow:#dfff00;
+  --accent:#b5ff33;
+  --grad:linear-gradient(90deg,#dfff00,#8fff00);
+}
+
+/* ============ RESET ============ */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Poppins',sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%;height:auto}
+a{text-decoration:none;color:inherit}
+button{border:none;background:none;color:inherit;cursor:pointer;font:inherit}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* ============ CURSOR SPOTLIGHT EFFECT ============ */
+.spotlight {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(223, 255, 0, 0.12) 0%, rgba(223, 255, 0, 0) 60%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    filter: blur(40px);
+    transition: transform 0.1s ease-out, width 0.3s ease, height 0.3s ease;
+}
+
+/* ============ HEADER ============ */
+header{
+  position:fixed;
+  top: 0;
+  left: 0;
+  width:100%;
+  height:84px;
+  background:rgba(16,16,16,.72);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid #222;
+  z-index:1000;
+}
+.nav{
+  height:84px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{
+  width: 40px;
+  height: 40px;
+  border-radius: 9px;
+  overflow: hidden;
+}
+.brand-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.brand-name{font-family:'Montserrat',sans-serif;font-weight:900;letter-spacing:.6px}
+
+nav ul{display:flex;gap:28px;list-style:none}
+nav a{font-weight:600;color:#e8e8e8;padding:6px 0;transition:.25s ease; position: relative;}
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--glow);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform .35s ease-in-out;
+}
+nav a:hover{color:var(--glow)}
+nav a:hover::after{transform: scaleX(1); transform-origin: left;}
+
+
+.cta{
+  padding:10px 18px;
+  border-radius:999px;
+  background:var(--glow);
+  color:#111;
+  font-weight:800;
+  letter-spacing:.2px;
+  transition:.25s ease; 
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.cta:hover{background:#f5ff5a; transform: scale(1.05); box-shadow: 0 0 20px rgba(223, 255, 0, 0.4);}
+
+.hamburger{display:none;flex-direction:column;gap:5px; padding: 10px; z-index: 1001;}
+.hamburger span{width:26px;height:3px;background:#fff;border-radius:2px;transition:.3s cubic-bezier(0.68, -0.55, 0.27, 1.55)}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,6px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-6px)}
+
+header nav.mobile-nav {
+  display: none;
+  position: absolute;
+  top: 84px;
+  left: 0;
+  width: 100%;
+  background: rgba(16,16,16,.9); 
+  backdrop-filter: blur(10px);
+}
+
+header nav.mobile-nav.active {
+  display: block;
+}
+
+header nav.mobile-nav ul {
+  flex-direction: column;
+  padding: 16px 20px;
+}
+
+
+@media(max-width:860px){
+  header nav.desktop-nav {display: none;}
+  .hamburger{display:flex}
+}
+
+/* ============ BODY PADDING (HEADER OFFSET) ============ */
+main {
+  padding-top: 84px;
+}
+
+
+/* ============ HERO ============ */
+.hero{
+  position:relative;display:grid;place-items:center;text-align:center;
+  min-height:100vh;padding:40px 20px;
+}
+.kicker{
+  font-size:.95rem;color:var(--muted);letter-spacing:.2em;text-transform:uppercase;margin-bottom:16px;
+  animation: fadeInDown .8s .2s both;
+}
+.hero h1{
+  font-family:'Montserrat',sans-serif;font-weight:900;line-height:1.05;
+  font-size:clamp(2.6rem,10vw,6.5rem);
+  -webkit-text-stroke:1px #6a6a6a;color:transparent;margin-bottom:12px;
+  animation: fadeInDown .8s .4s both;
+}
+.hero h1 .fill{
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-stroke:0;color:transparent
+}
+.hero p{
+  max-width:760px;margin:0 auto 28px;color:#cfcfcf;font-size:1.1rem;
+  animation: fadeInDown .8s .6s both;
+}
+.hero .actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap; animation: fadeInDown .8s .8s both;}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.btn{
+  padding:14px 22px;border-radius:12px;background:#1d1d1d;border:1px solid #2a2a2a;color:#eaeaea;font-weight:700;transition:.25s ease;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn:hover{transform:translateY(-3px);border-color:#444; box-shadow: 0 8px 20px rgba(0,0,0,.2);}
+.btn-primary{background:var(--glow);color:#121212;border-color:transparent}
+.btn-primary:hover{filter:brightness(1.1); box-shadow: 0 0 25px rgba(223, 255, 0, 0.4);}
+
+.scroll-hint{
+  margin-top:36px;color:#9a9a9a;font-size:.9rem;display:flex;align-items:center;gap:8px;justify-content:center; animation: fadeInDown .8s 1s both;
+}
+.dot{width:6px;height:6px;border-radius:50%;background:#9a9a9a;animation:blink 1.2s infinite}
+@keyframes blink{50%{opacity:.3}}
+
+/* ============ STRIP / MARQUEE ============ */
+.strip{
+  overflow:hidden;border-block:1px solid #1f1f1f;background:#0d0d0d;
+}
+.marquee-wrap {
+    display: flex;
+    white-space: nowrap;
+}
+.marquee{
+  display:flex;gap:40px;white-space:nowrap;padding:14px 0;font-weight:700;letter-spacing:.08em;color:#c7c7c7;
+  animation:slide 30s linear infinite;
+}
+.marquee span{display:inline-block; font-family: 'Montserrat', sans-serif;}
+@keyframes slide{
+  from{transform:translateX(0)}
+  to{transform:translateX(-100%)}
+}
+
+/* ============ GENERIC SECTION ============ */
+.section{padding:110px 20px;border-top:1px solid var(--line)}
+.section .title{
+  text-align:center;margin-bottom:54px
+}
+.title .script{
+  font-family:'Caveat',cursive;color:var(--accent);font-size:2.4rem;transform:rotate(-4deg);display:inline-block
+}
+.title .bold{
+  display:block;font-family:'Montserrat',sans-serif;font-size:clamp(2.2rem,6vw,3.6rem);font-weight:900;margin-top:-10px
+}
+
+/* ============ ABOUT SECTION ============ */
+.about-wrap{
+  display:grid;grid-template-columns:1.05fr 1fr;gap:36px;align-items:center
+}
+.about-img{
+  border-radius:20px;overflow:hidden;background:#0a0a0a;border:1px solid #242424; transition: .3s ease;
+}
+.about-img:hover { box-shadow: 0 0 30px rgba(255,255,255,0.08); }
+.about-img img{transition:transform .5s ease;aspect-ratio:4/3;object-fit:cover}
+.about-img:hover img{transform:scale(1.04)}
+.about-card{
+  background:rgba(22,22,22,.5);
+  border:1px solid #262626;
+  border-radius:16px;padding:32px;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+.about-card p{color:#cfcfcf}
+@media(max-width:960px){.about-wrap{grid-template-columns:1fr}}
+
+/* ============ TOC (CONTENTS) SECTION ============ */
+.toc-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:26px;max-width:1100px;margin:0 auto
+}
+.toc{
+  position:relative;padding:26px;border-radius:16px;background:#101010;border:1px solid #262626;overflow:hidden;transition:.25s ease;
+}
+.toc:hover{
+  transform:translateY(-6px);
+  background: #121212;
+  box-shadow: 0 10px 30px rgba(0,0,0,.4);
+}
+.toc::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    padding: 1px;
+    background: radial-gradient(400px at var(--x, 50%) var(--y, 50%), var(--glow), transparent 60%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+.toc:hover::before { opacity: 1; }
+
+.toc .num{position:absolute;top:-8px;left:10px;font:900 clamp(3.6rem,10vw,6rem)/.8 'Montserrat',sans-serif;color:rgba(255,255,255,.06); transition: .3s ease;}
+.toc:hover .num { color:rgba(223, 255, 0, 0.1); }
+.toc h3{position:relative;z-index:1;font:900 1.8rem 'Montserrat',sans-serif;margin-top:32px}
+.toc .tag{position:absolute;right:16px;bottom:10px;font-family:'Caveat',cursive;color:var(--accent);font-size:2rem;transform:rotate(-3deg)}
+
+/* ============ PORTFOLIO CATEGORY (CAT) SECTION ============ */
+.cat{padding:110px 0;border-top:1px solid var(--line)}
+.cat .head{text-align:center;margin-bottom:48px}
+.cat .head h2{
+  font:900 clamp(2.8rem,8vw,5.4rem) 'Montserrat',sans-serif;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;text-transform:uppercase
+}
+.cat .head p{max-width:760px;margin:10px auto 0;color:#bdbdbd}
+
+.grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px
+}
+
+/* ============ CARD COMPONENT ============ */
+.card{
+  background:#0d0d0d;border:1px solid #232323;border-radius:16px;overflow:hidden;transition:.28s ease;text-align:center;
+  position: relative;
+}
+.card:hover{transform:translateY(-8px);box-shadow:0 12px 32px rgba(0,0,0,.4)}
+.card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--x, 50%) 120%, rgba(223, 255, 0, 0.15), transparent 50%);
+    opacity: 0;
+    transition: opacity .4s ease;
+}
+.card:hover::after { opacity: 1; }
+.card .card-content { position: relative; z-index: 1; padding: 1px; /* Prevents margin collapse */}
+
+.card img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .5s ease, filter .5s ease}
+.card:hover img{transform:scale(1.05) rotate(.5deg);filter:brightness(1.1)}
+.card h4{margin:14px 12px 6px;font-weight:800;color:var(--glow)}
+.card p{color:#acacac;margin:0 12px 18px;font-size:.98rem}
+
+/* ============ CONTACT ============ */
+.contact{
+  padding:110px 20px;background:var(--bg-2);border-top:1px solid var(--line)
+}
+.contact h2{text-align:center;font:900 clamp(2rem,5vw,3rem) 'Montserrat',sans-serif;margin-bottom:14px}
+.contact p{text-align:center;color:#bfbfbf;margin-bottom:30px}
+.form-container{max-width:680px;margin:0 auto;}
+.form{
+  display:grid;gap:14px;
+}
+.input, .textarea{
+  background:#0f0f0f;border:1px solid #2a2a2a;border-radius:10px;color:#e6e6e6;padding:14px;transition: .25s ease;
+  font-family: 'Poppins', sans-serif;
+}
+.input:focus, .textarea:focus { border-color: var(--glow); box-shadow: 0 0 10px rgba(223, 255, 0, 0.2); outline: none;}
+.textarea{min-height:140px;resize:vertical}
+.submit{
+  background:var(--glow);color:#121212;font-weight:900;border-radius:12px;padding:14px;transition:.25s ease;
+}
+.submit:hover{filter:brightness(1.1); transform: scale(1.02);}
+
+#form-success {
+    background: #181818; border: 1px solid #2a2a2a; border-radius: 10px; padding: 40px 20px;
+    text-align: center;
+}
+#form-success h3 { font-size: 1.5rem; color: var(--glow); margin-bottom: 8px; }
+#form-success p { color: #cfcfcf; }
+
+
+/* ============ FOOTER ============ */
+footer{padding:28px 12px;text-align:center;color:#a7a7a7;border-top:1px solid var(--line);background:#0f0f0f}
+
+/* ============ REVEAL ON SCROLL ============ */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(0.165, 0.84, 0.44, 1), transform 1s cubic-bezier(0.165, 0.84, 0.44, 1)}
+.reveal.show{opacity:1;transform:none}
+
+/* accessibility focus */
+:focus-visible{outline:2px dashed var(--glow);outline-offset:3px}
+/* ============ NEW: ABOUT BRAND SECTION ============ */
+.about-brand .title h2.bold {
+  font-size: clamp(2.8rem, 8vw, 5.4rem);
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-top: 0;
+}
+
+.about-brand-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.about-brand-text {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid #262626;
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.about-brand-text h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--glow);
+  margin-bottom: 12px;
+}
+
+.about-brand-text p {
+  color: #cfcfcf;
+  line-height: 1.6;
+}
+
+.about-brand-image {
+  margin-top: 20px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #262626;
+}
+
+/* Layout for larger screens */
+@media(min-width: 960px) {
+  .about-brand-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: 30px;
+  }
+  .about-brand-text:nth-child(1) { grid-column: 1 / 2; }
+  .about-brand-text:nth-child(2) { grid-column: 2 / 3; }
+  .about-brand-text.full-width { 
+    grid-column: 1 / 3; 
+    text-align: center;
+  }
+  .about-brand-image {
+    grid-column: 3 / 4;
+    grid-row: 1 / 3;
+    margin-top: 0;
+  }
+}
+/* ============ NEW: EXPERIENCE SECTION ============ */
+.experience-section {
+    background-color: var(--bg-2);
+}
+
+.experience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.experience-card {
+    background: var(--bg);
+    border: 1px solid #262626;
+    border-radius: 16px;
+    padding: 26px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.experience-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.experience-card .exp-num {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0.05);
+    line-height: 1;
+}
+
+.experience-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: var(--glow);
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+}
+
+.experience-card p {
+    color: #a6a6a6;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+}
+/* ============ EXPERIENCE SECTION ============ */
+.experience-section {
+    background-color: var(--bg-2);
+}
+
+.experience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.experience-card {
+    background: var(--bg);
+    border: 1px solid #262626;
+    border-radius: 16px;
+    padding: 26px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.experience-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.experience-card .exp-num {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0.05);
+    line-height: 1;
+}
+
+.experience-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: var(--glow);
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+}
+
+.experience-card p {
+    color: #a6a6a6;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+}
+/* ============ NEW FOOTER BRAND STYLES (FINAL) ============ */
+.footer-grid {
+    display: grid;
+    gap: 40px 30px;
+    margin-bottom: 60px;
+    /* Default: 2 columns for mobile */
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* Tablet: 3 columns */
+@media (min-width: 768px) {
+    .footer-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Desktop: All 6 columns in a single row */
+@media (min-width: 1200px) {
+    .footer-grid {
+        /* This creates 6 columns: the first is slightly larger */
+        grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr;
+    }
+}
+
+.footer-brand-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 2.25rem;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+
+.contact-info {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.95rem;
+}
+
+.contact-info a {
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+.contact-info a:hover {
+  color: var(--glow);
+}
+/* ============ RESPONSIVE DESIGN STYLES ============ */
+
+/* For Tablets and smaller devices (less than 960px) */
+@media (max-width: 960px) {
+  /* Makes the 'About' section stack vertically */
+  .about-wrap {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Makes the 'About Brand' section stack vertically */
+  .about-brand-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-brand-text.full-width {
+    text-align: left;
+  }
+  .about-brand-image {
+    grid-row: auto;
+  }
+}
+
+/* For Mobile devices (less than 768px) */
+@media (max-width: 768px) {
+  /* Reduce padding on all sections for smaller screens */
+  .section, .cat, .contact {
+    padding: 80px 20px;
+  }
+
+  /* Make Hero text slightly smaller on mobile */
+  .hero h1 {
+    font-size: clamp(2.2rem, 15vw, 3.5rem);
+  }
+
+  /* Make section headings smaller */
+  .cat .head h2 {
+    font-size: clamp(2.4rem, 12vw, 4rem);
+  }
+  
+  .title .bold {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
+  /* Make the experience and contents grids single-column */
+  .experience-grid, .toc-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Make footer layout simpler */
+  .footer-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
